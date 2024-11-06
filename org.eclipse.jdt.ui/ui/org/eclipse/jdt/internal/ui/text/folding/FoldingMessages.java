@@ -31,6 +31,7 @@ final class FoldingMessages extends NLS {
 	public static String DefaultJavaFoldingPreferenceBlock_innerTypes;
 	public static String DefaultJavaFoldingPreferenceBlock_methods;
 	public static String DefaultJavaFoldingPreferenceBlock_imports;
+	public static String DefaultJavaFoldingPreferenceBlock_New;
 	public static String DefaultJavaFoldingPreferenceBlock_headers;
 	public static String DefaultJavaFoldingPreferenceBlock_customRegions;
 
@@ -39,7 +40,7 @@ final class FoldingMessages extends NLS {
 	public static String DefaultJavaFoldingPreferenceBlock_CustomRegionEnd;
 	public static String EmptyJavaFoldingPreferenceBlock_emptyCaption;
 	public static String JavaFoldingStructureProviderRegistry_warning_providerNotFound_resetToDefault;
-
+	public static String DefaultJavaFoldingPreferenceBlock_New_Setting_Title;
 	static {
 		NLS.initializeMessages(BUNDLE_NAME, FoldingMessages.class);
 	}

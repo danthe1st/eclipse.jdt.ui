@@ -101,7 +101,7 @@ public class DefaultJavaFoldingPreferenceBlock implements IScopedJavaFoldingPref
 		overlayKeys.add(new OverlayPreferenceStore.OverlayKey(OverlayPreferenceStore.BOOLEAN, PreferenceConstants.EDITOR_FOLDING_CUSTOM_REGIONS));
 		overlayKeys.add(new OverlayPreferenceStore.OverlayKey(OverlayPreferenceStore.STRING, PreferenceConstants.EDITOR_FOLDING_CUSTOM_REGION_START));
 		overlayKeys.add(new OverlayPreferenceStore.OverlayKey(OverlayPreferenceStore.STRING, PreferenceConstants.EDITOR_FOLDING_CUSTOM_REGION_END));
-
+		overlayKeys.add(new OverlayPreferenceStore.OverlayKey(OverlayPreferenceStore.BOOLEAN, PreferenceConstants.EDITOR_NEW_FOLDING_ENABLED));
 		return overlayKeys.toArray(new OverlayKey[overlayKeys.size()]);
 	}
 
@@ -142,6 +142,13 @@ public class DefaultJavaFoldingPreferenceBlock implements IScopedJavaFoldingPref
 		customRegionGroup.setText(FoldingMessages.DefaultJavaFoldingPreferenceBlock_custom_region_title);
 		addStringInput(customRegionGroup, FoldingMessages.DefaultJavaFoldingPreferenceBlock_CustomRegionStart, PreferenceConstants.EDITOR_FOLDING_CUSTOM_REGION_START);
 		addStringInput(customRegionGroup, FoldingMessages.DefaultJavaFoldingPreferenceBlock_CustomRegionEnd, PreferenceConstants.EDITOR_FOLDING_CUSTOM_REGION_END);
+
+		Label label2= new Label(outer, SWT.LEFT);
+		label2.setText(""); //$NON-NLS-1$
+		Label label1= new Label(outer, SWT.LEFT);
+		label1.setText(FoldingMessages.DefaultJavaFoldingPreferenceBlock_New_Setting_Title);
+
+		addCheckBox(outer, FoldingMessages.DefaultJavaFoldingPreferenceBlock_New, PreferenceConstants.EDITOR_NEW_FOLDING_ENABLED, 0);
 
 		return outer;
 	}
