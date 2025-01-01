@@ -157,7 +157,8 @@ public class CustomFoldingRegionTest {
 				import java.util.List;
 				""";
 		List<IRegion> projectionRanges= getProjectionRangesOfFile(str);
-		assertEquals(0, projectionRanges.size());
+		assertEquals(1, projectionRanges.size());
+		assertContainsRegionUsingStartAndEndLine(projectionRanges, str, 2, 3);
 	}
 
 	@Test
@@ -170,7 +171,7 @@ public class CustomFoldingRegionTest {
 				// #endregion
 				""";
 		List<IRegion> projectionRanges= getProjectionRangesOfFile(str);
-		assertEquals(1, projectionRanges.size());
+		assertEquals(2, projectionRanges.size());
 		assertContainsRegionUsingStartAndEndLine(projectionRanges, str, 2, 4);
 	}
 
@@ -335,9 +336,10 @@ public class CustomFoldingRegionTest {
 				}
 				""";
 		List<IRegion> projectionRanges= getProjectionRangesOfFile(str);
-		assertEquals(2, projectionRanges.size());
+		assertEquals(3, projectionRanges.size());
 		assertContainsRegionUsingStartAndEndLine(projectionRanges, str, 3, 9);//region
 		assertContainsRegionUsingStartAndEndLine(projectionRanges, str, 6, 8);//void b()
+		assertContainsRegionUsingStartAndEndLine(projectionRanges, str, 4, 5);//int a;
 	}
 
 	@Test
@@ -374,14 +376,14 @@ public class CustomFoldingRegionTest {
 		endLineEnd= getLengthIfNotFound(input, endLineEnd);
 
 		for (IRegion region : projectionRanges) {
-			if (region.getOffset() == startLineBegin + 1 && region.getOffset() + region.getLength() == endLineEnd + 1) {
+			if (region.getOffset() == startLineBegin + 1 && region.getOffset() + region.getLength() >= endLineBegin && region.getOffset() + region.getLength() <= endLineEnd) {
 				return;
 			}
 		}
 
 		fail(
-				"missing region from line " + startLine + "(index " + (startLineBegin + 1) + ") " +
-						"to line " + endLine + "(index " + (endLineEnd + 1) + ")" +
+				"missing region from line " + startLine + " (index " + (startLineBegin + 1) + ") " +
+						"to line " + endLine + " (index " + (endLineEnd) + ", length "+(endLineEnd - (startLineBegin + 1)) + ")" +
 						", actual regions: " + projectionRanges
 		);
 	}
